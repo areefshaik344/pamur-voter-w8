@@ -480,7 +480,7 @@ try{fams=JSON.parse(localStorage.getItem('pamur8fams')||'{}')}catch(e){}
 let flg={};try{flg=JSON.parse(localStorage.getItem('pamur8flags')||'{}')}catch(e){}
 let oos={};try{oos=JSON.parse(localStorage.getItem('pamur8oos')||'{}')}catch(e){}
 const oosSave=()=>{try{localStorage.setItem('pamur8oos',JSON.stringify(oos))}catch(e){}};
-const flgSave=()=>{try{localStorage.setItem('pamur8flags',JSON.stringify(flg))}catch(e){updSt();};
+const flgSave=()=>{try{localStorage.setItem('o',JSON.stringify(flg))}catch(e){}};
 let pty={};try{pty=JSON.parse(localStorage.getItem('pamur8pty')||'{}')}catch(e){}
 const ptySave=()=>{try{localStorage.setItem('pamur8pty',JSON.stringify(pty))}catch(e){}};
 let mob={};try{mob=JSON.parse(localStorage.getItem('pamur8mob')||'{}')}catch(e){}
