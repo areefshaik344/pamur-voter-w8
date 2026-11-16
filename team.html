@@ -122,6 +122,93 @@ header .row button{border-radius:999px;padding:8px 12px;font-size:13px;font-weig
 
 #bar .bpanel .bchip{background:var(--card);border:1px solid var(--bd);border-radius:12px;color:var(--fg);font-weight:700}
 </style>
+<style id="fleet-refine-style">
+    #bar .bartop {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 8px !important;
+    }
+    #bar #sc {
+      height: 31px !important;
+      min-height: 31px !important;
+      padding: 0 12px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      border-radius: 999px !important;
+      box-sizing: border-box !important;
+    }
+    #bar .bclear, #bar #um {
+      height: 31px !important;
+      min-height: 31px !important;
+      padding: 0 14px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-size: 12.5px !important;
+      font-weight: 700 !important;
+      border-radius: 999px !important;
+      border: 1px solid var(--bd) !important;
+      background: var(--card) !important;
+      color: var(--fg) !important;
+      cursor: pointer !important;
+      box-sizing: border-box !important;
+    }
+    #bar .btabs {
+      display: flex !important;
+      gap: 4px !important;
+      width: 100% !important;
+    }
+    #bar .btab {
+      flex: 1 1 0 !important;
+      height: 31px !important;
+      min-height: 31px !important;
+      padding: 0 6px !important;
+      font-size: 12px !important;
+      font-weight: 700 !important;
+      border-radius: 10px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+    }
+    #bar .bpanel[data-tab="phone"] {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      gap: 8px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    #bar .bpanel[data-tab="phone"] input {
+      flex: 6 1 0 !important;
+      min-width: 0 !important;
+      width: 60% !important;
+      height: 40px !important;
+      box-sizing: border-box !important;
+    }
+    #bar .bpanel[data-tab="phone"] .bchip {
+      flex: 4 1 0 !important;
+      min-width: 0 !important;
+      width: 40% !important;
+      height: 40px !important;
+      padding: 6px 4px !important;
+      text-align: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+    }
+    .tchic {
+      width: 20px !important;
+      height: 20px !important;
+      stroke: #2563eb !important;
+      stroke-width: 2.2 !important;
+      vertical-align: middle !important;
+      margin-top: -6px !important;
+      margin-left: 6px !important;
+    }
+</style>
 <style>
 /* v8.11 clear action bar */
 #bar{gap:4px}
@@ -381,7 +468,7 @@ $('pcrem').onclick=()=>{if(!sel.size)return;sel.forEach(s=>{delete pty[s]});ptyS
 document.querySelectorAll('#bar .bchip[data-c]').forEach(b=>{b.onclick=()=>{if(!sel.size)return alert('Select voters first');sel.forEach(s=>{cst[s]=b.dataset.c});cstSave();render()}});$('ccust').addEventListener('keydown',e=>{if(e.key==='Enter'){const v=$('ccust').value.trim();if(!v||!sel.size)return alert(v?'Select voters first':'Type a caste name');sel.forEach(s=>{cst[s]=v});cstSave();render();$('ccust').value=''}});$('cclrem').onclick=()=>{if(!sel.size)return;sel.forEach(s=>{delete cst[s]});cstSave();render()};
 $('lmsave').onclick=()=>{if(!sel.size)return alert('Select voters first');const v=$('lmk').value.trim();sel.forEach(s=>{if(v)lmk[s]=v;else delete lmk[s]});lmkSave();$('lmk').value='';render()};
 document.querySelectorAll('.ixc').forEach(b=>{b.onclick=()=>{const i=b.parentElement.querySelector('input');if(!i)return;i.value='';i.dispatchEvent(new Event('input',{bubbles:true}));i.focus()}});
-$('msave').onclick=()=>{if(!sel.size)return alert('Select voters first');const v=$('mnum').value.trim();const d=v.replace(/\D/g,'');if(v&&d.length<10){alert('Enter a full 10-digit mobile number, or leave empty to clear');return}sel.forEach(s=>{if(v)mob[s]=v;else delete mob[s]});mobSave();$('mnum').value='';render()};
+$('msave').onclick=()=>{if(!sel.size)return alert('Select voters first');const v=$('mnum').value.trim();const d=v.replace(/\D/g,'');if(v&&d.length<10){alert('Enter a full 10-digit mobile number, or leave empty to clear');return}sel.forEach(s=>{if(v)mob[s]=v;else delete mob[s]});mobSave();$('mnum').value='';sel.clear();render()};
 (function(){const tabs=document.querySelectorAll('#bar .btab');const panels=document.querySelectorAll('#bar .bpanel');tabs.forEach(x=>{x.onclick=()=>{tabs.forEach(y=>y.classList.toggle('on',y.dataset.tab===x.dataset.tab));panels.forEach(p=>p.classList.toggle('on',p.dataset.tab===x.dataset.tab))}})})();
 $('mk').onclick=()=>{const n=$('fname').value.trim();if(!n)return $('fname').focus();sel.forEach(s=>fams[s]=n);sel.clear();$('fname').value='';save();refreshFam();render()};
 $('ug').onclick=()=>{sel.forEach(s=>delete fams[s]);sel.clear();save();refreshFam();render()};
